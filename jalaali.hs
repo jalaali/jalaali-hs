@@ -31,34 +31,34 @@ jalCal :: JalaaliYear -> (LeapOffset, GregorianYear, DayInMarch)
 jalCal jy
   | jy <= (-62) = error ("invalid jalaali year " ++ show jy ++ ", should be greater than -62")
   | jy >= 3178 = error ("invalid jalaali year " ++ show jy ++ ", should be less than 3178")
-  | otherwise =
-      let gy = jy + 621
+  | otherwise = (leap, gy, dayInMarch)
+    where
+      gy = jy + 621
 
-          (before, _) = break (jy<) breaks
-          n = jy - last before
+      quot4 = (`quot` 4)
+      quot33 = (`quot` 33)
+      mod33 = (`mod` 33)
 
-          jumps = zipWith (-) (drop 1 before) before
-          lastJump = last $ firstJump : jumps
+      (before, _) = break (jy <) breaks
+      n = jy - last before
 
-          -- Find the limiting years for the Jalaali year jy.
-          leapJ' = foldl  (\acc jump -> acc +
-                                        ((jump `quot` 33) * 8) +
-                                        ((jump `mod` 33) `quot` 4)
-                          ) (-14) jumps
-          -- Find the number of leap years from AD 621 to the beginning
-          -- of the current Jalaali year in the Persian calendar.
-          leapJ'' = leapJ' + ((n `quot` 33) * 8) + (((n `mod` 33) + 3) `quot` 4)
-          leapJ = leapJ'' + if (lastJump `mod` 33) == 4 && (lastJump - n) == 4 then 1 else 0
+      jumps = zipWith (-) (drop 1 before) before
+      lastJump = last $ firstJump : jumps
 
-          -- And the same in the Gregorian calendar (until the year gy).
-          leapG = (gy `quot` 4) - ((((gy `quot` 100) + 1) * 3) `quot` 4) - 150
+      -- Find the limiting years for the Jalaali year jy.
+      leapJ' = foldl  (\acc jump -> acc + quot33 jump * 8 + quot4 (mod33 jump)) (-14) jumps
+      -- Find the number of leap years from AD 621 to the beginning
+      -- of the current Jalaali year in the Persian calendar.
+      leapJ'' = leapJ' + quot33 n * 8 + quot4 (mod33 n + 3)
+      leapJ = leapJ'' + if mod33 lastJump == 4 && (lastJump - n) == 4 then 1 else 0
 
-          -- Determine the Gregorian date of Farvardin the 1st.
-          dayInMarch = 20 + leapJ - leapG
+      -- And the same in the Gregorian calendar (until the year gy).
+      leapG = quot4 gy - quot4 (((gy `quot` 100) + 1) * 3) - 150
 
-          -- Find how many years have passed since the last leap year.
-          n' = n + if lastJump - n < 6 then (-lastJump) + (((lastJump + 4) `quot` 33) * 33) else 0
-          leap' = (((n' + 1) `mod` 33) - 1) `mod` 4
-          leap = if leap' == -1 then 4 else leap'
+      -- Determine the Gregorian date of Farvardin the 1st.
+      dayInMarch = 20 + leapJ - leapG
 
-      in (leap, gy, dayInMarch)
+      -- Find how many years have passed since the last leap year.
+      n' = n + if lastJump - n < 6 then (-lastJump) + quot33 (lastJump + 4) * 33 else 0
+      leap' = (mod33 (n' + 1) - 1) `mod` 4
+      leap = if leap' == -1 then 4 else leap'
