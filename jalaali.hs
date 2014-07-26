@@ -89,11 +89,11 @@ jalCal jy
   @param jd Jalaali day (1 to 29/31)
   @return Julian Day number
 -}
-j2d :: (JalaaliYear, JalaaliMonth, JalaaliDay) -> JulianDayNumber
-j2d (jy, jm, jd) = jdn + (jm - 1) * 31 - (jm `quot` 7) * (jm - 7) + jd - 1
+j2d :: JalaaliYear -> JalaaliMonth -> JalaaliDay -> JulianDayNumber
+j2d jy jm jd = jdn + (jm - 1) * 31 - (jm `quot` 7) * (jm - 7) + jd - 1
   where
     (leap, gy, dayInMarch) = jalCal jy
-    jdn = g2d (gy, 3, dayInMarch)
+    jdn = g2d gy 3 dayInMarch
 
 {-|
   Converts the Julian Day number to a date in the Jalaali calendar.
@@ -110,20 +110,16 @@ d2j jdn = (jy, jm, jd)
     (gy, _, _) = d2g jdn
     jy' = gy - 621
     (leap, _, dayInMarch) = jalCal jy'
-    jdn1f = g2d (gy, 3, dayInMarch)
+    jdn1f = g2d gy 3 dayInMarch
     k' = jdn - jdn1f
-    k = if k' >= 0 && k' <= 185
-        then k'
-        else if k' >= 0
-          then k' - 186
-          else k' + 179 + if leap == 1 then 1 else 0
+    k | k' >= 0 && k' <= 185 = k'
+      | k' >= 0 = k' - 186
+      | otherwise = k' + 179 + if leap == 1 then 1 else 0
     jy = jy' - if k' < 0 then 1 else 0 -- Previous Jalaali year.
     jm =  if k' >= 0 && k' <= 185
           then 1 + (k `quot` 31)
           else 7 + (k `quot` 30)
-    jd =  if k' >= 0 && k' <= 185
-          then 1 + (k `mod` 31)
-          else 1 + (k `mod` 30)
+    jd =  (+) 1 (mod k (if k' >= 0 && k' <= 185 then 31 else 30))
 
 
 {-|
@@ -138,8 +134,8 @@ d2j jdn = (jy, jm, jd)
   @param gd Calendar day of the month (1 to 28/29/30/31)
   @return Julian Day number
 -}
-g2d :: (GregorianYear, GregorianMonth, GregorianDay) -> JulianDayNumber
-g2d (gy, gm, gd) =
+g2d :: GregorianYear -> GregorianMonth -> GregorianDay -> JulianDayNumber
+g2d gy gm gd =
   d - ((((gy + 100100 + ((gm - 8) `quot` 6)) `quot` 100) * 3) `quot` 4) + 752
   where
     d = ((gy + ((gm - 8) `quot` 6) + 100100) * 1461) `quot` 4 +
