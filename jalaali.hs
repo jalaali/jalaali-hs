@@ -25,6 +25,20 @@ type DayInMarch = Int
 -- | An Int representing number of years since the last leap year.
 type LeapOffset = Int
 
+-- | A tuple for a Jalaali date.
+type JalaaliDate = (JalaaliYear, JalaaliMonth, JalaaliDay)
+
+-- | A tuple for a Gregorian date.
+type GregorianDate = (GregorianYear, GregorianMonth, GregorianDay)
+
+-- | Converts a Gregorian date to Jalaali.
+toJalaali :: GregorianYear -> GregorianMonth -> GregorianDay -> JalaaliDate
+toJalaali gy gm gd = d2j $ g2d gy gm gd
+
+-- | Converts a Jalaali date to Gregorian.
+toGregorian :: JalaaliYear -> JalaaliMonth -> JalaaliDay -> GregorianDate
+toGregorian jy jm jd = d2g $ j2d jy jm jd
+
 -- Jalaali years starting the 33-year rule.
 breaks =  [ -61, 9, 38, 199, 426, 686, 756, 818, 1111, 1181, 1210
           , 1635, 2060, 2097, 2192, 2262, 2324, 2394, 2456, 3178
@@ -104,7 +118,7 @@ j2d jy jm jd = jdn + (jm - 1) * 31 - (jm `quot` 7) * (jm - 7) + jd - 1
     jm: Jalaali month (1 to 12)
     jd: Jalaali day (1 to 29/31)
 -}
-d2j :: JulianDayNumber -> (JalaaliYear, JalaaliMonth, JalaaliDay)
+d2j :: JulianDayNumber -> JalaaliDate
 d2j jdn = (jy, jm, jd)
   where
     (gy, _, _) = d2g jdn
@@ -153,7 +167,7 @@ g2d gy gm gd =
     gm: Calendar month (1 to 12)
     gd: Calendar day of the month M (1 to 28/29/30/31)
 -}
-d2g :: JulianDayNumber -> (GregorianYear, GregorianMonth, GregorianDay)
+d2g :: JulianDayNumber -> GregorianDate
 d2g jdn = (gy, gm, gd)
   where
     j' = 4 * jdn + 139361631
