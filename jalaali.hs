@@ -44,6 +44,13 @@ isJalaaliLeapYear :: JalaaliYear -> Bool
 isJalaaliLeapYear jy = leap == 0
   where (leap, _, _) = jalCal jy
 
+jalaaliMonthLength :: JalaaliYear -> JalaaliMonth -> Int
+jalaaliMonthLength jy jm
+  | jm <= 6 = 31
+  | jm <= 11 = 30
+  | isJalaaliLeapYear jy = 30
+  | otherwise = 29
+
 -- Jalaali years starting the 33-year rule.
 breaks =  [ -61, 9, 38, 199, 426, 686, 756, 818, 1111, 1181, 1210
           , 1635, 2060, 2097, 2192, 2262, 2324, 2394, 2456, 3178
