@@ -1,3 +1,16 @@
+module Data.Time.Calendar.Jalaali
+( toJalaali
+, toGregorian
+, isValidJalaaliDate
+, isJalaaliLeapYear
+, jalaaliMonthLength
+, jalCal
+, j2d
+, d2j
+, g2d
+, d2g
+) where
+
 -- | An Int representing a Jalaali year.
 type JalaaliYear = Int
 
