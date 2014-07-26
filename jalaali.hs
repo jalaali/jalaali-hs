@@ -39,11 +39,23 @@ toJalaali gy gm gd = d2j $ g2d gy gm gd
 toGregorian :: JalaaliYear -> JalaaliMonth -> JalaaliDay -> GregorianDate
 toGregorian jy jm jd = d2g $ j2d jy jm jd
 
+-- | Checks whether a Jalaali date is valid or not.
+isValidJalaaliDate :: JalaaliYear -> JalaaliMonth -> JalaaliDay -> Bool
+isValidJalaaliDate jy jm jd
+  | jy < (-61) = False
+  | jy > 3177 = False
+  | jm < 1 = False
+  | jm > 12 = False
+  | jd < 1 = False
+  | jd > jalaaliMonthLength jy jm = False
+  | otherwise = True
+
 -- | Is this a leap year or not?
 isJalaaliLeapYear :: JalaaliYear -> Bool
 isJalaaliLeapYear jy = leap == 0
   where (leap, _, _) = jalCal jy
 
+-- | Number of days in a given month in a Jalaali year.
 jalaaliMonthLength :: JalaaliYear -> JalaaliMonth -> Int
 jalaaliMonthLength jy jm
   | jm <= 6 = 31
