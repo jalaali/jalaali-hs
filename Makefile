@@ -1,4 +1,7 @@
 test:
 	@cabal test
 
-.PHONY: test
+bench:
+	@cabal bench
+
+.PHONY: test bench
