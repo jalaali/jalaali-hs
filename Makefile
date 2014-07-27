@@ -1,4 +1,4 @@
 test:
-	@runhaskell test.hs
+	@cabal test
 
 .PHONY: test
