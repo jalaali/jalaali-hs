@@ -1,3 +1,4 @@
+-- | Functions for converting Jalaali and Gregorian calendar systems.
 module Data.Time.Calendar.Jalaali
 ( toJalaali
 , toGregorian
@@ -9,6 +10,17 @@ module Data.Time.Calendar.Jalaali
 , d2j
 , g2d
 , d2g
+, JalaaliYear
+, JalaaliMonth
+, JalaaliDay
+, GregorianYear
+, GregorianMonth
+, GregorianDay
+, JulianDayNumber
+, DayInMarch
+, LeapOffset
+, JalaaliDate
+, GregorianDate
 ) where
 
 -- | An Int representing a Jalaali year.

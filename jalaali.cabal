@@ -3,8 +3,10 @@
 
 name:                jalaali
 version:             0.1.0
-synopsis:            Haskell functions for converting Jalaali and Gregorian calendar systems to each other
--- description:
+synopsis:            Convert Jalaali and Gregorian calendar systems to each other
+description:         A few Haskell functions for converting
+                     Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi) and
+                     Gregorian calendar systems to each other.
 homepage:            https://github.com/jalaali/jalaali-hs
 license:             MIT
 license-file:        LICENSE
@@ -15,6 +17,10 @@ category:            Math
 build-type:          Simple
 extra-source-files:  Readme.md
 cabal-version:       >=1.10
+
+source-repository head
+  type:     git
+  location: git://github.com/jalaali/jalaali-hs.git
 
 library
   exposed-modules:     Data.Time.Calendar.Jalaali
