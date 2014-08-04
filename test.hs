@@ -3,13 +3,12 @@ import Data.Time.Calendar.Jalaali
 main = do
 
   toJalaali 1981 8 17 `eq` (1360, 5, 26)
-  toGregorian 1360 5 26 `eq` (1981, 8, 17)
-
   toJalaali 2013 1 10 `eq` (1391, 10, 21)
-  toGregorian 1391 10 21 `eq` (2013, 1, 10)
-
-  toGregorian 1393 5 4 `eq` (2014, 7, 26)
   toJalaali 2014 7 26 `eq` (1393, 5, 4)
+
+  toGregorian 1360 5 26 `eq` (1981, 8, 17)
+  toGregorian 1391 10 21 `eq` (2013, 1, 10)
+  toGregorian 1393 5 4 `eq` (2014, 7, 26)
 
   isValidJalaaliDate (-62) 12 29 `eq` False
   isValidJalaaliDate (-61) 1 1 `eq` True
