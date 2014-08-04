@@ -75,8 +75,8 @@ isValidJalaaliDate jy jm jd
   | jd > jalaaliMonthLength jy jm = False
   | otherwise = True
 
--- | Is this a leap year or not?
-isJalaaliLeapYear :: JalaaliYear -> Bool
+-- | Is this a leap Jalaali year or not?
+isLeapJalaaliYear :: JalaaliYear -> Bool
 isJalaaliLeapYear jy = leap == 0
   where (leap, _, _) = jalCal jy
 
