@@ -7,7 +7,7 @@ main = do
 
   let jd = cycle [toGregorian y m d | y <- [1..3000], m <- [1..12], d <- [1..30]]
   let gd = cycle [toJalaali y m d | y <- [560..3560], m <- [1..12], d <- [1..30]]
-  let jl = cycle [isJalaaliLeapYear y | y <- [1..3000]]
+  let jl = cycle [isLeapJalaaliYear y | y <- [1..3000]]
   let jv = cycle [isValidJalaaliDate y m d | y <- [1..3000], m <- [1..13], d <- [1..32]]
 
   start1 <- getCurrentTime
@@ -20,8 +20,8 @@ main = do
 
   start3 <- getCurrentTime
   end3 <- take n jl `deepseq` getCurrentTime
-  putStrLn $ show n ++ " calls of isJalaaliLeapYear took " ++ show (diffUTCTime end3 start3)
+  putStrLn $ show n ++ " calls of isLeapJalaaliYear took " ++ show (diffUTCTime end3 start3)
 
   start4 <- getCurrentTime
   end4 <- take n jv `deepseq` getCurrentTime
-  putStrLn $ show n ++ " calls of isJalaaliLeapYear took " ++ show (diffUTCTime end4 start4)
+  putStrLn $ show n ++ " calls of isValidJalaaliDate took " ++ show (diffUTCTime end4 start4)

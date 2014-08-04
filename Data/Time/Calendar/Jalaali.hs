@@ -3,7 +3,7 @@ module Data.Time.Calendar.Jalaali
 ( toJalaali
 , toGregorian
 , isValidJalaaliDate
-, isJalaaliLeapYear
+, isLeapJalaaliYear
 , jalaaliMonthLength
 , jalCal
 , j2d
@@ -77,7 +77,7 @@ isValidJalaaliDate jy jm jd
 
 -- | Is this a leap Jalaali year or not?
 isLeapJalaaliYear :: JalaaliYear -> Bool
-isJalaaliLeapYear jy = leap == 0
+isLeapJalaaliYear jy = leap == 0
   where (leap, _, _) = jalCal jy
 
 -- | Number of days in a given month in a Jalaali year.
@@ -85,7 +85,7 @@ jalaaliMonthLength :: JalaaliYear -> JalaaliMonth -> Int
 jalaaliMonthLength jy jm
   | jm <= 6 = 31
   | jm <= 11 = 30
-  | isJalaaliLeapYear jy = 30
+  | isLeapJalaaliYear jy = 30
   | otherwise = 29
 
 -- Jalaali years starting the 33-year rule.

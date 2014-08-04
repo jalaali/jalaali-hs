@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                jalaali
-version:             0.1.0
+version:             0.2.0
 synopsis:            Convert Jalaali and Gregorian calendar systems to each other
 description:         A few Haskell functions for converting
                      Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi) and

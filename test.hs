@@ -25,10 +25,10 @@ main = do
   isValidJalaaliDate 1393 12 29 `eq` True
   isValidJalaaliDate 1395 12 30 `eq` True
 
-  isJalaaliLeapYear 1393 `eq` False
-  isJalaaliLeapYear 1394 `eq` False
-  isJalaaliLeapYear 1395 `eq` True
-  isJalaaliLeapYear 1396 `eq` False
+  isLeapJalaaliYear 1393 `eq` False
+  isLeapJalaaliYear 1394 `eq` False
+  isLeapJalaaliYear 1395 `eq` True
+  isLeapJalaaliYear 1396 `eq` False
 
   jalaaliMonthLength 1393 1 `eq` 31
   jalaaliMonthLength 1393 4 `eq` 31
