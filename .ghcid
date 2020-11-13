@@ -1,0 +1,2 @@
+--command=stack ghci '--pedantic' jalaali:lib jalaali:test:jalaali-test
+--test=":main"

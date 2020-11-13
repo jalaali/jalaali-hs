@@ -1,0 +1,8 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "jalaali:lib"
+    - path: "./test"
+      component: "jalaali:test:jalaali-test"
+    - path: "./bench"
+      component: "jalaali:bench:jalaali-bench"

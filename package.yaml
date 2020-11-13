@@ -1,0 +1,60 @@
+name:                jalaali
+version:             0.3.0.0
+github:              "jalaali/jalaali-hs"
+license:             MIT
+author:              "Behrang Norouzinia"
+maintainer:          "behrangn@gmail.com"
+copyright:           "2020 Behrang Norouzinia"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+synopsis:            Jalaali calendar systems
+category:            Time
+
+description:         Functions for working with
+                     Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi)
+                     calendar systems.
+                     Please see the README on GitHub at <https://github.com/jalaali/jalaali-hs#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- time
+
+ghc-options:
+- -Wall
+- -Werror
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+tests:
+  jalaali-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - jalaali
+    - hspec
+
+benchmarks:
+  jalaali-bench:
+    main:                Bench.hs
+    source-dirs:        bench
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - jalaali
+    - deepseq
