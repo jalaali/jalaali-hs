@@ -20,7 +20,7 @@ description:         Functions for working with
 
 dependencies:
 - base >= 4.7 && < 5
-- time
+- time >= 1.9.3 && < 2
 
 ghc-options:
 - -Wall
