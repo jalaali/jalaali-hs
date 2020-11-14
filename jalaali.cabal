@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c0e5d193cb3dc0fa04a551335b9e268a607d6a5fdd794542b6ce2ff1580f93ef
+-- hash: 8efee6f4a79c9700627d7c8f7d322408d57fd103f62450c942406eed2c56850f
 
 name:           jalaali
-version:        0.3.0.0
+version:        1.0.0.0
 synopsis:       Jalaali calendar systems
 description:    Functions for working with Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi) calendar systems. Please see the README on GitHub at <https://github.com/jalaali/jalaali-hs#readme>
 category:       Time
@@ -37,7 +37,7 @@ library
   ghc-options: -Wall -Werror -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
-    , time
+    , time >=1.9.3 && <2
   default-language: Haskell2010
 
 test-suite jalaali-test
@@ -53,7 +53,7 @@ test-suite jalaali-test
       base >=4.7 && <5
     , hspec
     , jalaali
-    , time
+    , time >=1.9.3 && <2
   default-language: Haskell2010
 
 benchmark jalaali-bench
@@ -68,5 +68,5 @@ benchmark jalaali-bench
       base >=4.7 && <5
     , deepseq
     , jalaali
-    , time
+    , time >=1.9.3 && <2
   default-language: Haskell2010
