@@ -1,6 +1,6 @@
 # Jalaali Haskell
 
-Functions for working with Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi) calendar systems.
+Functions for working with Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi) calendar system.
 
 ## About
 

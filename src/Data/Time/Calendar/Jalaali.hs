@@ -1,4 +1,4 @@
--- | Functions for working with Jalaali calendar systems.
+-- | Functions for working with Jalaali calendar system.
 -- This library mimics the API of "Data.Time.Calendar.Gregorian".
 module Data.Time.Calendar.Jalaali
   ( isJalaaliLeapYear

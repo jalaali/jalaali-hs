@@ -8,8 +8,8 @@ cabal-version: 1.12
 
 name:           jalaali
 version:        1.0.0.0
-synopsis:       Jalaali calendar systems
-description:    Functions for working with Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi) calendar systems. Please see the README on GitHub at <https://github.com/jalaali/jalaali-hs#readme>
+synopsis:       Jalaali calendar system
+description:    Functions for working with Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi) calendar system. Please see the README on GitHub at <https://github.com/jalaali/jalaali-hs#readme>
 category:       Time
 homepage:       https://github.com/jalaali/jalaali-hs#readme
 bug-reports:    https://github.com/jalaali/jalaali-hs/issues

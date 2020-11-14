@@ -10,12 +10,12 @@ extra-source-files:
 - README.md
 - ChangeLog.md
 
-synopsis:            Jalaali calendar systems
+synopsis:            Jalaali calendar system
 category:            Time
 
 description:         Functions for working with
                      Jalaali (Jalali, Persian, Khayyami, Khorshidi, Shamsi)
-                     calendar systems.
+                     calendar system.
                      Please see the README on GitHub at <https://github.com/jalaali/jalaali-hs#readme>
 
 dependencies:
